@@ -26,7 +26,7 @@ const Resume = () => {
             <h3 className="text-2xl font-semibold mb-6">Education</h3>
             <div className="space-y-8">
               <div className="border-l-4 border-blue-500 pl-4">
-                <h4 className="text-xl font-medium">Bachelor's Degree</h4>
+                <h4 className="text-xl font-medium">Bachelor&apos;s Degree</h4>
                 <p className="text-gray-600">University Name • 2016 - 2020</p>
                 <p className="text-gray-700 mt-2">
                   Major in Computer Science
