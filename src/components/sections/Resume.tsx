@@ -47,7 +47,7 @@ const Resume = () => {
                 ? 'bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:border-orange-600'
                 : 'bg-white/50 backdrop-blur-sm border-slate-200/50 hover:border-orange-500'
             }`}>
-              <h4 className="text-xl font-semibold mb-2 text-orange-500">Bachelor's Degree</h4>
+              <h4 className="text-xl font-semibold mb-2 text-orange-500">Bachelor&apos;s Degree</h4>
               <p className={`mb-2 ${
                 theme === 'dark' ? 'text-slate-200' : 'text-slate-700'
               }`}>University Name • 2016 - 2020</p>
