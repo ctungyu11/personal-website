@@ -12,6 +12,6 @@ export default function Home() {
       <Projects />
       <Resume />
       <Contact />
-    </main>
+      </main>
   );
 }
