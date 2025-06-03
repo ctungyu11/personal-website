@@ -40,7 +40,7 @@ const Hero = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [displayText, currentHeaderIndex, isDeleting]);
+  }, [displayText, currentHeaderIndex, isDeleting, headers]);
 
   return (
     <section className={`relative min-h-screen flex flex-col items-center justify-between py-20 transition-colors duration-300 ${
