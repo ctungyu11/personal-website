@@ -11,6 +11,9 @@ export default function ContactForm() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const nameError = !name && error ? "Name is required" : undefined;
+  const emailError = !email && error ? "Email is required" : undefined;
+  const messageError = !message && error ? "Message is required" : undefined;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,7 +43,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xl space-y-4" aria-describedby="form-error">
+    <form onSubmit={onSubmit} className="max-w-xl space-y-4" aria-describedby={error ? "form-error" : undefined} noValidate>
       <div>
         <label className="block text-sm font-medium" htmlFor="name">Name</label>
         <input
@@ -48,9 +51,12 @@ export default function ContactForm() {
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          aria-invalid={Boolean(nameError)}
+          aria-describedby={nameError ? "name-error" : undefined}
           className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
           required
         />
+        {nameError && <p id="name-error" className="mt-1 text-sm text-red-700">{nameError}</p>}
       </div>
       <div>
         <label className="block text-sm font-medium" htmlFor="email">Email</label>
@@ -60,9 +66,12 @@ export default function ContactForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          aria-invalid={Boolean(emailError)}
+          aria-describedby={emailError ? "email-error" : undefined}
           className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
           required
         />
+        {emailError && <p id="email-error" className="mt-1 text-sm text-red-700">{emailError}</p>}
       </div>
       <div className="hidden">
         <label htmlFor="company">Company</label>
@@ -76,9 +85,12 @@ export default function ContactForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={6}
+          aria-invalid={Boolean(messageError)}
+          aria-describedby={messageError ? "message-error" : undefined}
           className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
           required
         />
+        {messageError && <p id="message-error" className="mt-1 text-sm text-red-700">{messageError}</p>}
       </div>
       {error && (
         <div id="form-error" role="alert" className="text-sm text-red-700">

@@ -16,6 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.variable} ${jetbrains.variable} antialiased min-h-dvh flex flex-col bg-white text-slate-900`}>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:text-blue-700 focus:ring-2 focus:ring-blue-600 focus:px-4 focus:py-2 focus:rounded"
+        >
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
@@ -25,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Nav />
           </div>
         </header>
-        <main className="flex-1 container mx-auto px-4">
+        <main id="main" className="flex-1 container mx-auto px-4">
           {children}
         </main>
         <footer className="border-t border-slate-200">
