@@ -30,7 +30,6 @@ export default function Nav() {
             {l.label}
           </Link>
         ))}
-        <Link href="/resume" className="text-sm rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-50">View Resume</Link>
       </div>
     </nav>
   );
