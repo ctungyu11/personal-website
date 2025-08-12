@@ -1,0 +1,64 @@
+[
+  {
+    "slug": "market-data-pipeline",
+    "title": "Real-time Market Data Pipeline",
+    "tags": ["Backend", "Quant"],
+    "stack": ["Python", "Kafka", "GCP", "BigQuery"],
+    "summary": "Ingested, normalized, and served equities/FX ticks with sub-100ms latency across services.",
+    "outcomes": [
+      "99.95% uptime across 90 days",
+      "P50 < 45ms, P99 < 180ms end-to-end",
+      "Storage cost reduced 22% via columnar partitioning"
+    ],
+    "links": { "code": "https://github.com/anthonychou/market-data-pipeline" },
+    "featured": true,
+    "problem": "Multiple downstream systems needed consistent, low-latency market data without vendor lock-in.",
+    "approach": "Designed a Kafka-backed ingestion layer with protobuf schemas, CDC into BigQuery, and a typed Python SDK.",
+    "results": ["SLOs met for latency/availability", "Unified schema across 5 consumers", "Clear upgrade path for new venues"]
+  },
+  {
+    "slug": "strategy-research-platform",
+    "title": "Quant Strategy Research Platform",
+    "tags": ["Quant", "AI"],
+    "stack": ["Python", "NumPy", "Pandas", "Ray"],
+    "summary": "Backtesting and feature pipeline with reproducible runs and fast parameter sweeps.",
+    "outcomes": [
+      "10x faster sweep time via parallel runs",
+      "Deterministic runs with artifact versioning",
+      "Built-in slippage/fee models"
+    ],
+    "links": { "writeup": "https://anthonychou.dev/writeups/research-platform" },
+    "featured": true,
+    "problem": "Research velocity was bottlenecked by ad-hoc scripts and hidden state.",
+    "approach": "Modularized run graph, added caching, and standardized metrics; parallelized with Ray.",
+    "results": ["Reduced time-to-insight from days to hours", "Better reproducibility and peer review"]
+  },
+  {
+    "slug": "role-aware-llm",
+    "title": "Role-Aware Speaker Analysis with LLMs",
+    "tags": ["AI"],
+    "stack": ["Python", "PyTorch", "HF Transformers"],
+    "summary": "Explored role-conditioned dialogue modeling for more accurate speaker intent classification.",
+    "outcomes": [
+      "+4.2 F1 on benchmark conversations",
+      "Inference cost reduced 18% via distillation",
+      "Robust to speaker swaps"
+    ],
+    "links": { "writeup": "https://anthonychou.dev/writeups/role-aware-llm" },
+    "featured": true,
+    "problem": "Speaker role context is often ignored, hurting downstream classifiers.",
+    "approach": "Conditioned the model with role embeddings and trained with contrastive objectives.",
+    "results": ["Improved classification metrics", "Better qualitative explanations"]
+  },
+  {
+    "slug": "infra-observability",
+    "title": "Infra Observability on a Budget",
+    "tags": ["Backend"],
+    "stack": ["Go", "Grafana", "Prometheus"],
+    "summary": "Unified metrics, logs, and traces with cost-aware sampling and clear SLO dashboards.",
+    "outcomes": ["30% fewer on-call pages", "Clearer ownership and runbooks"],
+    "links": { "writeup": "https://anthonychou.dev/writeups/observability" }
+  }
+]
+
+
