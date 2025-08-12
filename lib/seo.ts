@@ -6,9 +6,10 @@ export const site = {
   description:
     "CS + Math @ UMich. I build reliable trading and data systems, and I research LLM/NLP for role-aware speaker analysis.",
   url: "https://anthonychou.dev",
-  twitter: "https://x.com/",
-  github: "https://github.com/anthonychou",
-  linkedin: "https://www.linkedin.com/in/anthony-chou/",
+  twitter: "",
+  github: "https://github.com/ctungyu11",
+  linkedin: "https://www.linkedin.com/in/ctungyu11",
+  email: "mailto:ctungyu11@gmail.com",
 };
 
 export function baseMetadata(overrides?: Partial<Metadata>): Metadata {
@@ -46,6 +47,7 @@ export function personJsonLd() {
     name: site.name,
     headline: site.title,
     url: site.url,
+    email: site.email,
     sameAs: [site.github, site.linkedin].filter(Boolean),
   };
 }
