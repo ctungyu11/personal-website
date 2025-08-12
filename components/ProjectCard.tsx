@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { track } from "@/lib/plausible";
 import type { Project } from "@/lib/projects";
 
 export default function ProjectCard({ project, clickable = false }: { project: Project; clickable?: boolean }) {
+  const router = useRouter();
   const content = (
     <div className="group relative rounded-2xl border border-slate-200 p-5 bg-white shadow-sm hover:shadow-md transition will-change-transform">
       <div className="flex items-start justify-between gap-2">
@@ -43,14 +44,31 @@ export default function ProjectCard({ project, clickable = false }: { project: P
   );
 
   if (clickable) {
+    function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+      const target = e.target as HTMLElement;
+      if (target.closest("a")) return; // let inner links work normally
+      track("project_view", { slug: project.slug });
+      router.push(`/projects/${project.slug}`);
+    }
+    function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+      if (e.currentTarget !== (e.target as HTMLElement)) return; // ignore when focusing inner elements
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        track("project_view", { slug: project.slug });
+        router.push(`/projects/${project.slug}`);
+      }
+    }
     return (
-      <Link
-        href={`/projects/${project.slug}`}
-        onClick={() => track("project_view", { slug: project.slug })}
-        className="block"
+      <div
+        role="link"
+        tabIndex={0}
+        aria-label={`${project.title}`}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        className="block cursor-pointer"
       >
         {content}
-      </Link>
+      </div>
     );
   }
   return content;
