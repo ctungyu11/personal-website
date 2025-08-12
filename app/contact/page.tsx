@@ -9,6 +9,10 @@ export default function ContactPage() {
   return (
     <Section title="Contact" subtitle="I aim to reply within 48 hours.">
       <div className="grid gap-8 md:grid-cols-2 items-start">
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Send a message</h3>
+          <ContactForm />
+        </div>
         <div className="space-y-4">
           <Callout title="Prefer email or social?">
             <div className="space-y-2">
@@ -16,10 +20,6 @@ export default function ContactPage() {
               <SocialLinks />
             </div>
           </Callout>
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Send a message</h3>
-          <ContactForm />
         </div>
       </div>
     </Section>
