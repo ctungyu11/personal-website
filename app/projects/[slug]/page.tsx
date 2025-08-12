@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProjectBySlug } from "@/lib/projects";
+import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
 import Section from "@/components/Section";
 import TechBadge from "@/components/TechBadge";
 
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  // Build-time ISR can be added later; dynamic for now
-  return [];
+  const slugs = await getProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {

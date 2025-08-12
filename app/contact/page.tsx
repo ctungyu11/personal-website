@@ -1,6 +1,7 @@
 import ContactForm from "@/components/ContactForm";
 import Section from "@/components/Section";
 import SocialLinks from "@/components/SocialLinks";
+import Callout from "@/components/Callout";
 
 export const metadata = { title: "Contact" };
 
@@ -9,9 +10,12 @@ export default function ContactPage() {
     <Section title="Contact" subtitle="I aim to reply within 48 hours.">
       <div className="grid gap-8 md:grid-cols-2 items-start">
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Contact information</h3>
-          <p className="text-slate-700">Prefer email or social? Reach me here:</p>
-          <SocialLinks />
+          <Callout title="Prefer email or social?">
+            <div className="space-y-2">
+              <p>Reach me via the links below, or use the form.</p>
+              <SocialLinks />
+            </div>
+          </Callout>
         </div>
         <div>
           <h3 className="text-lg font-semibold mb-3">Send a message</h3>
