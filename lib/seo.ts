@@ -52,4 +52,11 @@ export function personJsonLd() {
   };
 }
 
+export function ogImageUrl({ title, subtitle }: { title: string; subtitle?: string }) {
+  const url = new URL("/og", site.url);
+  url.searchParams.set("title", title);
+  if (subtitle) url.searchParams.set("subtitle", subtitle);
+  return url.toString();
+}
+
 

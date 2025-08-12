@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { getFeaturedProjects } from "@/lib/projects";
+import { site, ogImageUrl } from "@/lib/seo";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import Section from "@/components/Section";
@@ -19,3 +21,14 @@ export default async function HomePage() {
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: `${site.title} — ${site.name}`,
+  description: site.description,
+  alternates: { canonical: site.url },
+  openGraph: {
+    title: `${site.title} — ${site.name}`,
+    description: site.description,
+    images: [ogImageUrl({ title: site.name, subtitle: site.title })],
+  },
+};

@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getAllProjects } from "@/lib/projects";
+import { ogImageUrl, site } from "@/lib/seo";
 import ProjectCard from "@/components/ProjectCard";
 import FilterChips from "@/components/FilterChips";
 import Section from "@/components/Section";
@@ -31,5 +33,16 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: `Projects — ${site.name}`,
+  description: "Selected work across Backend, Quant, and AI",
+  alternates: { canonical: `${site.url}/projects` },
+  openGraph: {
+    title: `Projects — ${site.name}`,
+    description: "Selected work across Backend, Quant, and AI",
+    images: [ogImageUrl({ title: "Projects", subtitle: site.name })],
+  },
+};
 
 

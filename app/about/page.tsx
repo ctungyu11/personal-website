@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Section from "@/components/Section";
+import { site, ogImageUrl } from "@/lib/seo";
 
-export const metadata = {
-  title: "About",
+export const metadata: Metadata = {
+  title: `About — ${site.name}`,
+  description: site.description,
+  alternates: { canonical: `${site.url}/about` },
+  openGraph: {
+    title: `About — ${site.name}`,
+    description: site.description,
+    images: [ogImageUrl({ title: "About", subtitle: site.name })],
+  },
 };
 
 export default function AboutPage() {

@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import { site, ogImageUrl } from "@/lib/seo";
 import Section from "@/components/Section";
 import TechBadge from "@/components/TechBadge";
 
@@ -9,6 +11,24 @@ export const revalidate = 3600;
 export async function generateStaticParams() {
   const slugs = await getProjectSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+  if (!project) return {};
+  const title = `${project.title} — ${site.name}`;
+  const description = project.summary;
+  return {
+    title,
+    description,
+    alternates: { canonical: `${site.url}/projects/${project.slug}` },
+    openGraph: {
+      title,
+      description,
+      images: [ogImageUrl({ title: project.title, subtitle: project.tags.join(" • ") })],
+    },
+  };
 }
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {

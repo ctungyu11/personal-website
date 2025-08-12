@@ -1,9 +1,20 @@
+import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import Section from "@/components/Section";
 import SocialLinks from "@/components/SocialLinks";
 import Callout from "@/components/Callout";
+import { site, ogImageUrl } from "@/lib/seo";
 
-export const metadata = { title: "Contact" };
+export const metadata: Metadata = {
+  title: `Contact — ${site.name}`,
+  description: `Get in touch with ${site.name}`,
+  alternates: { canonical: `${site.url}/contact` },
+  openGraph: {
+    title: `Contact — ${site.name}`,
+    description: `Get in touch with ${site.name}`,
+    images: [ogImageUrl({ title: "Contact", subtitle: site.name })],
+  },
+};
 
 export default function ContactPage() {
   return (

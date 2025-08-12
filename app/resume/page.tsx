@@ -1,7 +1,18 @@
+import type { Metadata } from "next";
 import Section from "@/components/Section";
 import ResumeDownload from "@/components/ResumeDownload";
+import { site, ogImageUrl } from "@/lib/seo";
 
-export const metadata = { title: "Resume" };
+export const metadata: Metadata = {
+  title: `Resume — ${site.name}`,
+  description: `Resume for ${site.name}`,
+  alternates: { canonical: `${site.url}/resume` },
+  openGraph: {
+    title: `Resume — ${site.name}`,
+    description: `Resume for ${site.name}`,
+    images: [ogImageUrl({ title: "Resume", subtitle: site.name })],
+  },
+};
 
 export default function ResumePage() {
   return (
