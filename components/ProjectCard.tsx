@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { track } from "@/lib/plausible";
+import { track } from "@vercel/analytics";
 import type { Project } from "@/lib/projects";
 
 export default function ProjectCard({ project, clickable = false }: { project: Project; clickable?: boolean }) {

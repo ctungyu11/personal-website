@@ -10,10 +10,6 @@ const nextConfig: NextConfig = {
       { source: "/robots.txt", destination: "/robots", permanent: true },
     ];
   },
-  // Plausible first‑party proxy (add vercel.json rewrites later if needed)
-  rewrites: async () => {
-    return [{ source: "/stats/:path*", destination: "https://plausible.io/:path*" }];
-  },
 };
 
 export default nextConfig;

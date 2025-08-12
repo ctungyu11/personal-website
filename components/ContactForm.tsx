@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { track } from "@/lib/plausible";
+import { track } from "@vercel/analytics";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
