@@ -6,18 +6,30 @@ import { Resend } from "resend";
 const RATE_WINDOW_MS = 60_000; // 1 minute window
 const RATE_MAX = 3; // max 3 requests per window per key
 const recentRequests = new Map<string, number[]>();
+let lastSweep = 0;
 
 function getClientKey(request: Request): string {
   const ipHeader = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown";
-  const ip = ipHeader.split(",")[0].trim();
-  const ua = request.headers.get("user-agent") || "unknown";
-  return `${ip}:${ua}`;
+  const ip = (ipHeader.split(",")[0] || "unknown").trim();
+  return ip;
+}
+
+function sweepIfNeeded(now: number) {
+  if (now - lastSweep < RATE_WINDOW_MS) return;
+  const cutoff = now - RATE_WINDOW_MS;
+  for (const [k, arr] of recentRequests) {
+    const pruned = arr.filter((t) => t > cutoff);
+    if (pruned.length > 0) recentRequests.set(k, pruned);
+    else recentRequests.delete(k);
+  }
+  lastSweep = now;
 }
 
 function isRateLimited(key: string): boolean {
   const now = Date.now();
-  const from = now - RATE_WINDOW_MS;
-  const hits = (recentRequests.get(key) || []).filter((t) => t > from);
+  sweepIfNeeded(now);
+  const cutoff = now - RATE_WINDOW_MS;
+  const hits = (recentRequests.get(key) || []).filter((t) => t > cutoff);
   hits.push(now);
   recentRequests.set(key, hits);
   return hits.length > RATE_MAX;
@@ -26,7 +38,7 @@ function isRateLimited(key: string): boolean {
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().max(320).email({ message: "Invalid email" }),
-  message: z.string().trim().min(10, "Message is too short").max(2000, "Message is too long"),
+  message: z.string().trim().min(10, "Message is too short").max(5000, "Message is too long"),
   company: z.string().optional(), // honeypot
 });
 
