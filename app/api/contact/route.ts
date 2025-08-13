@@ -5,13 +5,16 @@ import { Resend } from "resend";
 // Simple in-memory rate limiter (per instance). Good enough for low volume.
 const RATE_WINDOW_MS = 60_000; // 1 minute window
 const RATE_MAX = 3; // max 3 requests per window per key
+const RATE_MAX_KEYS = 1000; // upper bound on tracked clients (low-traffic safeguard)
 const recentRequests = new Map<string, number[]>();
 let lastSweep = 0;
 
 function getClientKey(request: Request): string {
   const ipHeader = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown";
   const ip = (ipHeader.split(",")[0] || "unknown").trim();
-  return ip;
+  const ua = (request.headers.get("user-agent") || "unknown").slice(0, 100);
+  // Note: UA can be spoofed. This only reduces collisions for shared IPs.
+  return `${ip}:${ua}`;
 }
 
 function sweepIfNeeded(now: number) {
@@ -22,6 +25,20 @@ function sweepIfNeeded(now: number) {
     if (pruned.length > 0) recentRequests.set(k, pruned);
     else recentRequests.delete(k);
   }
+  // Enforce a hard cap on tracked keys to avoid unbounded growth in long-lived processes.
+  if (recentRequests.size > RATE_MAX_KEYS) {
+    // Drop the stalest keys first based on their latest hit timestamp.
+    const entries = Array.from(recentRequests.entries());
+    entries.sort((a, b) => {
+      const la = a[1][a[1].length - 1] || 0;
+      const lb = b[1][b[1].length - 1] || 0;
+      return la - lb; // oldest first
+    });
+    const excess = recentRequests.size - RATE_MAX_KEYS;
+    for (let i = 0; i < excess; i++) {
+      recentRequests.delete(entries[i][0]);
+    }
+  }
   lastSweep = now;
 }
 
@@ -30,9 +47,14 @@ function isRateLimited(key: string): boolean {
   sweepIfNeeded(now);
   const cutoff = now - RATE_WINDOW_MS;
   const hits = (recentRequests.get(key) || []).filter((t) => t > cutoff);
+  // Check BEFORE adding this request
+  if (hits.length >= RATE_MAX) {
+    return true;
+  }
+  // Record this request after passing the check
   hits.push(now);
   recentRequests.set(key, hits);
-  return hits.length > RATE_MAX;
+  return false;
 }
 
 const schema = z.object({
