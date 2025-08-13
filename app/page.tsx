@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getFeaturedProjects } from "@/lib/projects";
 import { site, ogImageUrl } from "@/lib/seo";
 import Hero from "@/components/Hero";
+import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import Section from "@/components/Section";
 
@@ -16,6 +17,11 @@ export default async function HomePage() {
           {exactlyThree.map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
+        </div>
+        <div className="mt-6">
+          <Link href="/projects" className="text-blue-600 hover:underline">
+            View all projects →
+          </Link>
         </div>
       </Section>
     </>
