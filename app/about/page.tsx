@@ -25,6 +25,14 @@ export default function AboutPage() {
           Interests include exchange connectivity, efficient data formats, and applied LLM/NLP for
           role-aware analysis.
         </p>
+        <p>
+          <strong>Currently exploring:</strong>
+        </p>
+        <ul className="list-disc list-inside text-slate-700">
+          <li>Podcast role–guest graph analysis</li>
+          <li>Crypto arbitrage microservices</li>
+          <li>US equities quant trading system</li>
+        </ul>
       </div>
       <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div>
