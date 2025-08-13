@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <Section title="About">
-      <div className="prose max-w-none">
+      <div className="prose max-w-none py-4">
         <h3 className="font-semibold">Bio</h3>
         <p>
           I focus on building reliable backend and data systems for trading and analytics. I enjoy
@@ -26,6 +26,8 @@ export default function AboutPage() {
           Interests include exchange connectivity, efficient data formats, and applied LLM/NLP for
           role-aware analysis.
         </p>
+      </div>
+      <div className="prose max-w-none py-4">
         <h3 className="font-semibold">Currently exploring</h3>
         <ul className="list-disc list-inside text-slate-700">
           <li>Podcast role-guest graph analysis</li>
@@ -33,8 +35,9 @@ export default function AboutPage() {
           <li>US equities quant trading system</li>
         </ul>
       </div>
-      <h3 className="mt-10 font-semibold">Skills</h3>
-      <div className="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="py-4">
+        <h3 className="font-semibold">Skills</h3>
+        <div className="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div>
           <h4 className="font-semibold mb-2">Languages & Frameworks</h4>
           <ul className="list-disc list-inside text-slate-700">
@@ -55,6 +58,7 @@ export default function AboutPage() {
             <li>NumPy, Pandas, PyTorch</li>
             <li>Transformers</li>
           </ul>
+        </div>
         </div>
       </div>
     </Section>
