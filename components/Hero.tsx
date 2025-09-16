@@ -13,7 +13,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold">Math & CS @ UMich | Backend Developer | Quantitative Developer</h1>
+          <h1 className="text-3xl md:text-4xl font-bold">Backend & Quantitative Developer</h1>
           <p className="text-slate-700">
             CS + Math @ UMich. I build reliable and low-latency trading and data systems, and I research LLM/NLP.
           </p>

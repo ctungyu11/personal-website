@@ -47,7 +47,7 @@
     "title": "Research on Building the Social Network of Hosts and Guests in Podcasts",
     "tags": ["AI"],
     "stack": ["Python", "Hugging Face", "LLMs", "NLP", "vLLMs", "Prompt Engineering"],
-    "summary": "Podcast role identification data pipeline using prompt engineering and Analysis of the Social Network of Hosts and Guests in Podcasts Ecosystem.",
+    "summary": "Podcast role identification data pipeline using prompt engineering and analysis of the Social Network of Hosts and Guests in Podcasts Ecosystem.",
     "outcomes": [
       "Identify hosts and guests in 1M+ podcast episodes with 80% recall",
       "Reduced processing time by 144x using vLLM and batch processing",
