@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('home renders and has hero', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: /Backend Engineer & Quant Developer/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Backend & Quantitative Developer/i })).toBeVisible();
 });
 
 test('projects page filters', async ({ page }) => {

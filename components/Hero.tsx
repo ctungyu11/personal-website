@@ -13,10 +13,9 @@ export default function Hero() {
           </div>
         </div>
         <div className="space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold">Backend Engineer & Quant Developer</h1>
+          <h1 className="text-3xl md:text-4xl font-bold">Backend & Quantitative Developer</h1>
           <p className="text-slate-700">
-            CS + Math @ UMich. I build reliable trading and data systems, and I research LLM/NLP for
-            role-aware speaker analysis.
+            CS + Math @ UMich. I build reliable and low-latency trading and data systems, and I research LLM/NLP.
           </p>
           <div className="flex gap-3">
             <Link href="/contact" className="inline-flex items-center justify-center rounded-xl bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 transition">Contact</Link>
