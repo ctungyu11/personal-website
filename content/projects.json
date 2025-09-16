@@ -1,63 +1,86 @@
 [
   {
-    "slug": "market-data-pipeline",
-    "title": "Real-time Market Data Pipeline",
+    "slug": "crypto-trading-system",
+    "title": "Crypto Quantitative Trading System & Strategies",
     "tags": ["Backend", "Quant"],
-    "stack": ["Python", "Kafka", "GCP", "BigQuery"],
-    "summary": "Ingested, normalized, and served equities/FX ticks with sub-100ms latency across services.",
+    "stack": ["Python", "PostgreSQL", "GCP", "Pandas", "Asyncio", "Docker", "Threading"],
+    "summary": "Low-latency, high-throughput market data pipeline and trading system for crypto markets.",
     "outcomes": [
-      "99.95% uptime across 90 days",
-      "P50 < 45ms, P99 < 180ms end-to-end",
-      "Storage cost reduced 22% via columnar partitioning"
+      "Achieved 15+% annual returns with 2% max drawdown over 1 year.",
+      "Processed 1k+ trades/minute with low latency.",
+      "Handled $10M+ from 1k+ subscriptions"
     ],
-    "links": { "code": "https://github.com/anthonychou/market-data-pipeline" },
+    "links": {},
     "featured": true,
-    "problem": "Multiple downstream systems needed consistent, low-latency market data without vendor lock-in.",
-    "approach": "Designed a Kafka-backed ingestion layer with protobuf schemas, CDC into BigQuery, and a typed Python SDK.",
-    "results": ["SLOs met for latency/availability", "Unified schema across 5 consumers", "Clear upgrade path for new venues"]
+    "problem": "24/7 crypto markets require robust, low-latency systems for effective trading.",
+    "approach": "Engineered a crypto quantitative trading system & strategies with advanced backtesting systems and hosted on GCP.",
+    "results": [
+      "Engineered high-frequency crypto trading systems and arbitrage strategies in Python, processing over 1,000 transactions/minute with asyncio and achieving a 15-20% annual return rate with minimal risk.",
+      "Developed a backtesting and research pipeline for quantitative trading strategies using Python, Pandas, Polars, and threading, increasing fine-tuning speed by 200%.",
+      "Collaborated with DevOps to automate system deployments via CI/CD pipelines on Kubernetes using Docker, GitHub Actions, and Helm, resulting in 50% faster release cycles.",
+      "Integrated OpenTelemetry and implemented robust error handling and logging, leading to a 30% improvement in real-time monitoring and achieving 99.9% system uptime over one year."
+    ]
   },
   {
-    "slug": "strategy-research-platform",
-    "title": "Quant Strategy Research Platform",
-    "tags": ["Quant", "AI"],
-    "stack": ["Python", "NumPy", "Pandas", "Ray"],
-    "summary": "Backtesting and feature pipeline with reproducible runs and fast parameter sweeps.",
+    "slug": "algo-voyage",
+    "title": "AlgoVoyage: Crypto Perpetual Futures Trading System & Strategies",
+    "tags": ["Quant", "Backend"],
+    "stack": ["Python", "PostgreSQL", "Pandas", "Polars", "GCP", "Docker", "Asyncio", "vectorbt"],
+    "summary": "Event-driven crypto perpetual futures trading system with advanced backtesting and research capabilities.",
     "outcomes": [
-      "10x faster sweep time via parallel runs",
-      "Deterministic runs with artifact versioning",
-      "Built-in slippage/fee models"
+      "Achieved <500ms latency from signal generation to order execution",
+      "Deployed on GCP using Docker and CI/CD with 99.5% uptime",
+      "Implemented robust, portfolio-level risk management controls, maintaining max drawdown <2%"
     ],
-    "links": { "writeup": "https://anthonychou.dev/writeups/research-platform" },
+    "links": {},
     "featured": true,
-    "problem": "Research velocity was bottlenecked by ad-hoc scripts and hidden state.",
-    "approach": "Modularized run graph, added caching, and standardized metrics; parallelized with Ray.",
-    "results": ["Reduced time-to-insight from days to hours", "Better reproducibility and peer review"]
+    "problem": "Existing crypto trading systems lack robustness, low latency, multi-strategy support, and multiple source data integration.",
+    "approach": "Built an event-driven trading system with modular strategy integration, advanced backtesting, and research capabilities using Python, Pandas, Polars, and vectorbt.",
+    "results": [
+      "Architected a full-stack event-driven trading application in Python achieving <500ms latency from signal generation to order execution, deployed on GCP with 99.5% uptime.",
+      "Engineered a complete backtesting engine using vectorbt and Pandas to validate strategy performance against key metrics including Sharpe Ratio and Maximum Drawdown.",
+      "Implemented portfolio-level risk management controls, including an automated “kill switch,” successfully maintaining a maximum daily drawdown of <2% during live paper trading."
+    ]
   },
   {
     "slug": "role-aware-llm",
-    "title": "Role-Aware Speaker Analysis with LLMs",
+    "title": "Research on Building the Social Network of Hosts and Guests in Podcasts",
     "tags": ["AI"],
-    "stack": ["Python", "PyTorch", "HF Transformers"],
-    "summary": "Explored role-conditioned dialogue modeling for more accurate speaker intent classification.",
+    "stack": ["Python", "Hugging Face", "LLMs", "NLP", "vLLMs", "Prompt Engineering"],
+    "summary": "Podcast role identification data pipeline using prompt engineering and Analysis of the Social Network of Hosts and Guests in Podcasts Ecosystem.",
     "outcomes": [
-      "+4.2 F1 on benchmark conversations",
-      "Inference cost reduced 18% via distillation",
-      "Robust to speaker swaps"
+      "Identify hosts and guests in 1M+ podcast episodes with 80% recall",
+      "Reduced processing time by 144x using vLLM and batch processing",
+      "Improved LLM recall by 20% and reduced processing time by 40% by advanced prompt engineering"
     ],
-    "links": { "writeup": "https://anthonychou.dev/writeups/role-aware-llm" },
+    "links": {},
     "featured": true,
-    "problem": "Speaker role context is often ignored, hurting downstream classifiers.",
-    "approach": "Conditioned the model with role embeddings and trained with contrastive objectives.",
-    "results": ["Improved classification metrics", "Better qualitative explanations"]
+    "problem": "Identifying hosts and guests in podcasts is challenging due to diverse formats and lack of structured data. And the social network of hosts and guests is underexplored.",
+    "approach": "Developed a Python data pipeline to identify hosts and guests in podcasts and analyze their social network.",
+    "results": [
+      "Developed a Python data pipeline to process 100+ GB of podcast data, using Hugging Face LLMs (Qwen) to extract host-guest relationships with 80% recall for social network analysis.",
+      "Optimized the large-scale data processing pipeline for 1M+ podcast episodes by implementing vLLM and batch processing on a Slurm GPU cluster, reducing processing time from 16 hours to 6 minutes for 1.6k episodes.",
+      "Enhanced LLM recall by 20% and reduced processing time by 40% through advanced prompt engineering techniques."
+    ]
   },
   {
-    "slug": "infra-observability",
-    "title": "Infra Observability on a Budget",
+    "slug": "DA-backend-system",
+    "title": "DA Capital Backend System",
     "tags": ["Backend"],
-    "stack": ["Go", "Grafana", "Prometheus"],
-    "summary": "Unified metrics, logs, and traces with cost-aware sampling and clear SLO dashboards.",
-    "outcomes": ["30% fewer on-call pages", "Clearer ownership and runbooks"],
-    "links": { "writeup": "https://anthonychou.dev/writeups/observability" }
+    "stack": ["Go", "PostgreSQL", "Kubernetes", "REST", "CI/CD", "Gin"],
+    "summary": "Implemented robust REST API endpoints using Go (Gin framework) and designed PostgreSQL database schemas.",
+    "outcomes": [
+      "Enabled customer-facing strategy subscription and configuration platform.",
+      "Supported frontend applications to visualize trading strategies performance."
+    ],
+    "links": {},
+    "featured": false,
+    "problem": "Need for a robust backend system to support customer-facing applications.",
+    "approach": "Developed REST API endpoints using Go (Gin framework) and designed PostgreSQL database schemas.",
+    "results": [
+      "Implemented robust REST API endpoints using Go (Gin framework) for a customer-facing strategy subscription and configuration platform.",
+      "Designed PostgreSQL database schemas to efficiently store and manage user, subscription, and strategy data."
+    ]
   }
 ]
 
